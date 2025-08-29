@@ -35,7 +35,6 @@ is_workday = True
 
 # Check what the function returns given the current values of the variables above
 actual = prepared_for_weather(have_umbrella, rain_level, have_hood, is_workday)
-print(actual)
 
 def is_negative(number):
     if number < 0:
@@ -86,34 +85,33 @@ we mean the largest total that can be made without exceeding 21. So e.g. A+8 = 1
 """
 
 def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
-    # If player's total is 11 or less, always hit
+    # if player's total is 11 or less, always hit
     if player_total <= 11:
         return True
-    else:
-        return False
     
-
-should_hit(0, 13, 0, 0) # → True (dealer has strong card, hit)
-
-
-"""
-def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
-   Return True if the player should hit (request another card) given the current game
-    state, or False if the player should stay.
-    When calculating a hand's total value, we count aces as "high" (with value 11) if doing so
-    doesn't bring the total above 21, otherwise we count them as low (with value 1). 
-    For example, if the player's hand is {A, A, A, 7}, we will count it as 11 + 1 + 1 + 7,
-    and therefore set player_total=20, player_low_aces=2, player_high_aces=1.
-   
-    # Soft hand logic
-    if player_high_aces >= 1:
-        return player_total <= 17
-    
-    # Hard hand logic
-    if player_total >= 17:
-        return False
+    # if player's total is between 12 and 16, and dealer is more than or equal to 7, hit.
     elif 12 <= player_total <= 16:
-        return dealer_total >= 7
-    else:
-        return True
-"""
+        if dealer_total >= 7:
+            return True
+        else:
+            return False
+    
+    # if the player has more than 17, stay.
+    elif player_total >= 17:
+        return False
+    
+    # some player and dealer conditions:
+    elif player_total > dealer_total:
+        print = ("won")
+    elif dealer_total >= player_total:
+        print("lost")
+    elif player_total > 21:
+        print("lost")
+    elif dealer_total > 21:
+        print("win")
+    elif player_total == 21:
+        print("won")
+    elif dealer_total == 21:
+        print("lost")
+
+print("Blackjack hit?:  " + str(should_hit(8, 13, 0, 0))) # → True (dealer has strong card, hit)
