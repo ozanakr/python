@@ -86,29 +86,25 @@ we mean the largest total that can be made without exceeding 21. So e.g. A+8 = 1
 """
 
 def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
-    # If player's total is 11 or less, always hit (you can't bust)
+    # If player's total is 11 or less, always hit
     if player_total <= 11:
         return True
-    
-    # If player's total is between 12 and 16, hit only if dealer shows 7 or more
-    elif 12 <= player_total <= 16:
-        return dealer_total >= 7
-
-    # If player's total is 17 or more, don't hit
     else:
         return False
+    
 
-#below is a test case we passed:
-should_hit(10, 14, 0, 0) # → True (dealer has strong card, hit)
+should_hit(0, 13, 0, 0) # → True (dealer has strong card, hit)
 
+
+"""
 def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
-    """Return True if the player should hit (request another card) given the current game
+   Return True if the player should hit (request another card) given the current game
     state, or False if the player should stay.
     When calculating a hand's total value, we count aces as "high" (with value 11) if doing so
     doesn't bring the total above 21, otherwise we count them as low (with value 1). 
     For example, if the player's hand is {A, A, A, 7}, we will count it as 11 + 1 + 1 + 7,
     and therefore set player_total=20, player_low_aces=2, player_high_aces=1.
-    """
+   
     # Soft hand logic
     if player_high_aces >= 1:
         return player_total <= 17
@@ -120,3 +116,4 @@ def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
         return dealer_total >= 7
     else:
         return True
+"""
