@@ -86,8 +86,6 @@ we mean the largest total that can be made without exceeding 21. So e.g. A+8 = 1
 """
 
 def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
-    def should_hit(dealer_total, player_total, player_low_aces, player_high_aces):
-    
     # If player's total is 11 or less, always hit (you can't bust)
     if player_total <= 11:
         return True
